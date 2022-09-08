@@ -1,56 +1,64 @@
- <?php
-
+<?php
 include "config.php";
-include "header.php";
-$select ="SELECT * FROM REGISTER";
-$select_run = mysqli_query($conn,$select);
-if($select_run){
-    echo "selected";
+include 'header.php';
 
-}else{
-    echo "error";
-}
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
 
-<h1 class="text-center"> Users Data </h1>
+
 <div class="container">
-    <table class="table table-light">
-        <thead>
-        <th>SNO</th>
-        <th>NAME</th>
-        <th>EMAIL</th>
-        <th>PASSWORD</th>
-        <th>CONTACT</th>
-        <th> ACTION</th>
-
-</thead>
-<tbody>
-    <?php $i=1; while($row = mysqli_fetch_assoc($select_run)){?>
-        <tr>
-            <td><?php echo $i?></td>
-            <td><?php echo $row["name"]?></td> 
-            <td><?php echo $row["email"]?></td>
-            <td><?php echo $row["password"]?></td>
-            <td><?php echo $row["contact"]?></td>
-            <td> <a class="btn btn-success">EDIT</a> ||<a class="btn btn-danger">DELETE</a></td>
+        <table class="table table-light">
+  <thead>
+    <tr>
+      <th>SNO</th>
+      <th >Firstname</th>
+      <th >Lastname</th>
+      <th >Email</th>
+      <th >Password</th>
+      <th >Date</th>
+      <th >Contact</th>
+      <th>Message</th>
+      <th >Address</th>
+      <th >Action</th>
     </tr>
-    <?php $i++;
-    }?>
+  </thead>  
+  <tbody>
+<?php
+$sql="SELECT * FROM `crud`";
+$result=mysqli_query($conn,$sql);
+if($result){
+    while($row=mysqli_fetch_assoc($result)){
+      $id=$row['id'];
+      $fname=$row['fname'];
+      $lname=$row['lname'];
+      $email=$row['email'];
+      $password=$row['password'];
+      $date=$row['date'];
+      $contact=$row['contact'];
+      $message=$row['message'];
+      $address=$row['address'];
+        echo ' <tr>
+        <th>'.$id.'</th>
+        <td>'.$fname.'</td>
+        <td>'.$lname.'</td>
+        <td>'.$email.'</td>
+        <td>'.$password.'</td>
+        <td>'.$date.'</td>
+        <td>'.$contact.'</td>
+        <td>'.$message.'</td>
+        <td>'.$address.'</td>
+      
+
+        <td>
+       <button class="btn btn-success"><a href="update.php? updateid='.$id.'" class="text-light">Update</a></button>
+       <button class="btn btn-danger"><a href="delete.php? deleteid='.$id.'" class="text-light">Delete</a></button>
+       </td>
+      </tr>';
+    } } ?>
 </tbody>
 </table>
-</div>
-</body>
-</html>
-
+    </div>
+    <?php
+include 'footer.php';
+?>

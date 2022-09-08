@@ -1,16 +1,9 @@
 <?php
+session_start();
 
-$servername = "localhost";
-$username = "root";
-$password ="";
-$database = "crud";
+$conn=new mysqli('localhost','root','','crud');
 
-$conn = mysqli_connect($servername, $username, $password, $database);
 
-if($conn){
-    echo "Connecting";
-} else {
-    echo "Not Connecting";
-}
+
 
 ?>
