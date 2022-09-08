@@ -5,7 +5,7 @@ include 'header.php';
 ?>
 
 
-
+<h1 class="text-center">Users Data</h1>
 
 <div class="container">
         <table class="table table-light">
